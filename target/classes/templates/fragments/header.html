@@ -1,0 +1,6 @@
+<header th:fragment="header" class="navbar navbar-dark bg-dark px-4">
+    <p class="navbar-brand mb-0">
+        <span th:text="${user.printRoles()}"></span>
+    </p>
+    <a href="/logout" class="nav-link text-secondary h6 mb-0 py-0" style="font-weight: 500">Logout</a>
+</header>

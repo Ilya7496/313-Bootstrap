@@ -1,0 +1,47 @@
+<div th:fragment="new-user-tab" class="tab-pane fade" id="add-new-user"
+     role="tabpanel" aria-labelledby="profile-tab">
+    <h3 class="bg-light mb-0 py-2 px-4 border border-top-0 border-bottom-0">
+        Add new user
+    </h3>
+    <div class="border rounded-bottom p-4 bg-white ">
+        <div class="table-responsive">
+            <form th:action="@{add-new-user}" th:object="${newUser}" method="post"
+                  class="container w-50 pb-2 text-center font-weight-bold">
+                <div class="mb-3">
+                    <label for="username" class="form-label m-0">Username</label>
+                    <input th:field="*{username}" th:value="${user.getUsername()}"
+                           type="text" class="form-control"
+                           id="username" placeholder="Enter username"
+                           required autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label m-0">Email</label>
+                    <input th:field="*{email}" th:value="${user.getEmail()}"
+                           type="email" class="form-control"
+                           id="email" placeholder="Enter email"
+                           required autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label m-0">Password</label>
+                    <input th:field="*{password}" th:value="${user.getPassword}"
+                           type="password" class="form-control"
+                           id="password" placeholder="Enter password"
+                           required autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label for="role" class="form-label m-0">Role</label>
+                    <div>
+                        <select th:field="*{roles}" multiple size="2" id="role"
+                                class="custom-select form-control" required>
+                            <option th:each="role : ${roles}"
+                                    th:value="${role.getId()}"
+                                    th:text="${role.getName()}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Add new user</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link th:replace="fragments/head :: head">
+    <title>User page</title>
+    <style>
+        html, body {
+            height: 100%;
+            overflow-y: hidden;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            height: 92vh;
+        }
+
+        .highlight {
+            background-color: #0d6efd;
+            border-radius: 3px;
+            color: white;
+        }
+
+        .highlight:hover {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+        table.table td {
+            border: none;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+<header th:replace="fragments/header :: header"></header>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/sidebar :: sidebar"></div>
+        <main role="main" class="col-md-10 ml-sm-auto col-lg-10 p-4 bg-light">
+            <h1 class="mb-4">User information-page</h1>
+            <h3 class="bg-light mb-0 py-2 px-4 border border-top border-bottom-0 rounded-top">
+                About user
+            </h3>
+            <div class="border rounded-bottom p-4 bg-white ">
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm table-hover">
+                        <thead>
+                        <tr>
+                            <th class="py-3">ID</th>
+                            <th class="py-3">Username</th>
+                            <th class="py-3">Email</th>
+                            <th class="py-3">Role</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${user.getId()}" class="align-middle"></td>
+                            <td th:text="${user.getUsername()}" class="align-middle"></td>
+                            <td th:text="${user.getEmail()}" class="align-middle"></td>
+                            <td th:text="${user.printRoles()}" class="align-middle"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+<div th:replace="fragments/script1 :: script1"></div>
+<div th:replace="fragments/script2 :: script2"></div>
+<div th:replace="fragments/script3 :: script3"></div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<nav th:fragment="sidebar" class="col-md-2 d-none d-md-block sidebar py-4 px-0">
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <li class="nav-item"
+                th:each="role : ${user.getAuthorities()}"
+                th:if="${role.authority == 'ROLE_ADMIN'}">
+                <a class="nav-link" href="admin-page">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link highlight" href="user-page">User</a>
+            </li>
+        </ul>
+    </div>
+</nav>
