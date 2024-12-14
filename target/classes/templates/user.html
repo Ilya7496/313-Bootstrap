@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>User page</title>
+</head>
+
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="d-flex align-items-center w-100">
+        <strong class="text-white mr-3"><span th:text="${#authentication.principal.email}"></span></strong>
+        <p class="mb-0 text-white mr-3">with roles:</p>
+        <span th:each="role : ${#authentication.authorities}" th:text="${#strings.substring(role.authority, 5)}" class="text-white mr-3"></span>
+        <form th:action="@{/logout}" th:method="POST" class="mb-0 ml-auto">
+            <input type="submit" value="Logout" class="btn btn-link text-white p-0">
+        </form>
+    </div>
+</nav>
+<!-- Слева навигация юзер -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">User</a>
+            </div>
+        </div>
+        <div class="col-10">
+            <!-- Это вкладка ЮЗЕР с навигации -->
+            <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                <h1>User information-page</h1>
+                <!-- Заголовок -->
+                <nav class="navbar navbar-light bg-light">
+                    <a class="navbar-brand mb-0 h1" href="#">About user</a>
+                </nav>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">LastName</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Role</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${user.getId()}">id</td>
+                            <td th:text="${user.getName()}">Name</td>
+                            <td th:text="${user.getLastname()}">Last Name</td>
+                            <td th:text="${user.getAge()}">Age</td>
+                            <td th:text="${user.getEmail()}">Email</td>
+                            <td>
+                            <span th:each="authorities : ${user.getAuthorities()}"
+                                  th:text="${#strings.substring(authorities, 5).replace(']','')} + ' '">Role</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
